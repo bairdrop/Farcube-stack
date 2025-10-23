@@ -1,0 +1,44 @@
+body {
+  background: linear-gradient(180deg, #3b82f6, #9333ea);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.game-container {
+  text-align: center;
+}
+
+canvas {
+  background: #0f172a;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+button {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #16a34a;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+#scoreText {
+  font-size: 18px;
+  margin-top: 5px;
+}
