@@ -1,0 +1,21 @@
+{
+  "miniapp": {
+    "version": "1",
+    "name": "Cube Stack",
+    "iconUrl": "https://your-domain.vercel.app/assets/icon.png",
+    "homeUrl": "https://your-domain.vercel.app",
+    "splashImageUrl": "https://your-domain.vercel.app/assets/splash.png",
+    "splashBackgroundColor": "#0f172a",
+    "subtitle": "Stack cubes as high as you can!",
+    "description": "A simple Farcaster Mini App game — tap to stack cubes, and share your score!",
+    "primaryCategory": "games",
+    "tags": ["farcaster", "game", "miniapp", "cube", "stack"],
+    "ogTitle": "Cube Stack – Farcaster Mini Game",
+    "ogDescription": "How many cubes can you stack? Play now & share your score!",
+    "ogImageUrl": "https://your-domain.vercel.app/assets/og-image.png"
+  },
+  "accountAssociation": {
+    "farcasterId": 1234,
+    "username": "yourusername"
+  }
+}
