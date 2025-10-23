@@ -12,11 +12,24 @@ let score = 0;
 const cubeWidth = 100;
 const cubeHeight = 20;
 
+// Initialize Farcaster SDK when DOM ready
+document.addEventListener("DOMContentLoaded", async () => {
+  if (window.miniapp && window.miniapp.sdk && window.miniapp.sdk.actions) {
+    try {
+      await window.miniapp.sdk.actions.ready();
+      console.log("Farcaster MiniApp SDK Ready ✅");
+    } catch (err) {
+      console.error("SDK Ready Error:", err);
+    }
+  }
+});
+
 function resetGame() {
   stack = [{ x: 150, y: 580, width: cubeWidth }];
   cubeSpeed = 3;
   score = 0;
   gameOver = false;
+  scoreText.innerText = `Score: ${score}`;
   newCube();
   draw();
 }
@@ -80,6 +93,26 @@ function endGame() {
   ctx.font = "24px Arial";
   ctx.fillText("Game Over!", 130, 300);
   ctx.fillText(`Final Score: ${score}`, 130, 340);
+
+  // Share button
+  const shareBtn = document.createElement("button");
+  shareBtn.innerText = "Share My Score";
+  shareBtn.style.marginTop = "10px";
+  document.body.appendChild(shareBtn);
+
+  shareBtn.addEventListener("click", async () => {
+    const message = `I stacked ${score} cubes in Cube Stack! 🧱 Try it here: https://your-domain.com`;
+    if (window.miniapp && window.miniapp.sdk && window.miniapp.sdk.actions) {
+      try {
+        await window.miniapp.sdk.actions.composeCast({ text: message });
+        console.log("Score shared to Farcaster!");
+      } catch (err) {
+        console.error("Failed to share:", err);
+      }
+    } else {
+      alert("Farcaster SDK not detected. Copy this message:\n" + message);
+    }
+  });
 }
 
 startBtn.addEventListener("click", () => {
