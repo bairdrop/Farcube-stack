@@ -155,3 +155,11 @@ function drop() {
   spawnMoving();
   speed *= 1.02;
 }
+const no-copyright-gaming-background-music-for-minecraftgaming-405001 = document.getElementById('no-copyright-gaming-background-music-for-minecraftgaming-405001');
+startBtn.addEventListener('click', ()=>{
+  no-copyright-gaming-background-music-for-minecraftgaming-405001.play();
+  reset();
+  startBtn.textContent = 'Playing...';
+  requestAnimationFrame(loop);
+});
+
