@@ -121,3 +121,37 @@ startBtn.addEventListener("click", () => {
 });
 
 canvas.addEventListener("click", dropCube);
+// Load best score from localStorage
+let bestScore = parseInt(localStorage.getItem('bestScore')) || 0;
+
+function reset() {
+  stack = [{x: WIDTH/2-50, y: HEIGHT-40, w:100, h:30}];
+  spawnMoving();
+  score = 0;
+  gameOver = false;
+  scoreEl.textContent = `Score: ${score} | Best: ${bestScore}`;
+}
+
+function drop() {
+  const top = stack[stack.length-1];
+  const overlapLeft = Math.max(top.x, moving.x);
+  const overlapRight = Math.min(top.x + top.w, moving.x + moving.w);
+  const overlap = overlapRight - overlapLeft;
+
+  if (overlap <= 0) {
+    gameOver = true;
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem('bestScore', bestScore);
+    }
+    startBtn.textContent = 'Restart';
+    scoreEl.textContent = `Score: ${score} | Best: ${bestScore}`;
+    return;
+  }
+
+  stack.push({x: overlapLeft, y: moving.y, w: overlap, h: moving.h});
+  score++;
+  scoreEl.textContent = `Score: ${score} | Best: ${bestScore}`;
+  spawnMoving();
+  speed *= 1.02;
+}
